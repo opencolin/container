@@ -10,7 +10,7 @@ on:
 jobs:
   verify-signatures:
     name: Verify commit signatures
-    runs-on: ubuntu-latest
+    runs-on: tenki-macos-latest-large
     steps:
       - name: Check all commits are signed
         env:
