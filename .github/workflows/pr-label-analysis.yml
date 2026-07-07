@@ -10,8 +10,8 @@ permissions:
 jobs:
   analyze:
     name: Analyze PR for labeling
-    runs-on: ubuntu-latest
-    
+    runs-on: tenki-macos-latest-large
+
     steps:
       - name: Save PR metadata
         env:
@@ -19,7 +19,8 @@ jobs:
         run: |
           mkdir -p ./pr-metadata
           echo "${PR_NUMBER}" > ./pr-metadata/pr-number.txt
-      
+
+
       - name: Upload PR metadata as artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
