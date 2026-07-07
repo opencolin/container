@@ -12,12 +12,12 @@ permissions:
 jobs:
   apply-labels:
     name: Apply labels to PR
-    runs-on: ubuntu-latest
+    runs-on: tenki-macos-latest-large
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read
       pull-requests: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
@@ -30,14 +30,15 @@ jobs:
           pattern: pr-metadata-*
           merge-multiple: false
         id: download-artifact
-      
+
       - name: Read PR number
         id: pr-number
         run: |
           PR_NUMBER=$(cat "pr-number.txt")
           echo "number=${PR_NUMBER}" >> $GITHUB_OUTPUT
           echo "PR Number: ${PR_NUMBER}"
-      
+
+
       - name: Apply labels using labeler
         uses: actions/labeler@f27b608878404679385c85cfa523b85ccb86e213 # v6
         with:
